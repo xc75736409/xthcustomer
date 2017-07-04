@@ -52,7 +52,8 @@
     </update>
 
     <delete id="deleteCustomer">
-        DELETE from customer WHERE id=#{id}
+        DELETE from consume WHERE customer_id=#{id};
+        DELETE from customer WHERE id=#{id};
     </delete>
 
 
