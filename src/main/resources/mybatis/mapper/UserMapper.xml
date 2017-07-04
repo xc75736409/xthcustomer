@@ -4,8 +4,9 @@
 <mapper namespace="com.davidx.xth.dao.UserMapper" >
 
 
-    <select id="getAll"  parameterType="Map" resultType="Map">
+    <select id="userLogin"  parameterType="Map" resultType="Map">
         SELECT * FROM admin
+        WHERE  username=#{username} and password=#{password}
     </select>
 
 </mapper>

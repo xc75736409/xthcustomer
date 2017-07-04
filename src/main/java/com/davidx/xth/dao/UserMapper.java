@@ -7,5 +7,6 @@ import java.util.Map;
  * Created by xc on 17-6-30.
  */
 public interface UserMapper {
-    List<Map<String,Object>> getAll();
+
+    public List<Map<String, Object>> userLogin(Map<String, Object> paras);
 }
