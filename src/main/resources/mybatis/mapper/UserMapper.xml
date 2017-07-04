@@ -3,10 +3,8 @@
 
 <mapper namespace="com.davidx.xth.dao.UserMapper" >
 
-
     <select id="userLogin"  parameterType="Map" resultType="Map">
         SELECT id,username,realname,role FROM admin
         WHERE  username=#{username} and password=#{password}
     </select>
-
 </mapper>
