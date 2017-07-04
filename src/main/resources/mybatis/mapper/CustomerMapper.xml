@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.davidx.xth.dao.CustomerMapper" >
+
+
+    <select id="getCustomer"   resultType="Map">
+        SELECT
+        <if test="!p.isCount">
+            id,`name`,sex,phone,company,remarks,createtime
+        </if>
+        <if test="p.isCount">
+            count(id) as total
+        </if>
+        from customer
+        where 1=1
+        <if test="c.id!=null and c.id!=''">
+            and id=#{c.id}
+        </if>
+        <if test="c.name!=null and c.name!=''">
+            and name LIKE CONCAT('%',#{c.name},'%')
+        </if>
+        <if test="c.sex!=null and c.sex!=''">
+            and sex =#{c.sex}
+        </if>
+        <if test="c.phone!=null and c.phone!=''">
+            and phone LIKE CONCAT('%',#{c.phone},'%')
+        </if>
+        <if test="c.company!=null and c.company!=''">
+            and company LIKE CONCAT('%',#{c.company},'%')
+        </if>
+        <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
+            and createtime BEGIN #{c.bcreatetime} and #{c.ecreatetime}
+        </if>
+        ORDER by createtime
+        <if test="!p.isCount">
+            LIMIT #{p.indexPage},#{p.pageSize}
+        </if>
+    </select>
+
+    <insert id="addCustomer">
+        INSERT INTO customer(id,name,sex,phone,company,remarks,createtime)
+        VALUES(
+        (SELECT ma.maxnum FROM(
+        SELECT MAX(id)+1 as maxnum FROM customer)as ma)
+        ,#{name},#{sex},#{phone},#{company},#{remarks},NOW()
+        )
+    </insert>
+
+    <update id="updateCustomer">
+    UPDATE customer SET name=#{name},sex=#{sex},phone=#{phone},company=#{company},remarks=#{remarks} where id=#{id}
+    </update>
+
+    <delete id="deleteCustomer">
+        DELETE from customer WHERE id=#{id}
+    </delete>
+
+</mapper>

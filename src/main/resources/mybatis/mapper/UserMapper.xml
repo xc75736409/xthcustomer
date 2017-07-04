@@ -5,7 +5,7 @@
 
 
     <select id="userLogin"  parameterType="Map" resultType="Map">
-        SELECT * FROM admin
+        SELECT id,username,realname,role FROM admin
         WHERE  username=#{username} and password=#{password}
     </select>
 
