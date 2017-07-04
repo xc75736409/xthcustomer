@@ -4,7 +4,6 @@
     <logger name="org.springframework.web" level="info"/>
 
     <logger name="com.davidx.xth.dao" level="INFO"/>
-    <!-- 注意加上这一句,要不然啥配置都没用,具体到XXXMapper.java所在的package -->
     <logger name="com.davidx.xth.dao" level="DEBUG"/>
 
     <!-- mybatis日志打印 -->
