@@ -37,4 +37,21 @@ public class CustomerServiceImp implements CustomerService {
     public int deleteCustomer(Map<String, Object> paras) {
         return dao.deleteCustomer(paras);
     }
+
+    @Override
+    public List<Map<String, Object>> getConsumeById(Map<String, Object> paras, Page page) {
+        return dao.getConsumeById(paras, page);
+    }
+
+    @Override
+    public int operateConsume(Map<String, Object> paras, String operateType) {
+        int state = 0;
+        if ("add".equals(operateType))
+            state = dao.addConsume(paras);
+        else if ("update".equals(operateType))
+            state = dao.updateConsume(paras);
+        else if ("delete".equals(operateType))
+            state = dao.deleteConsume(paras);
+        return state;
+    }
 }

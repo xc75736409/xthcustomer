@@ -30,8 +30,8 @@ public class CustomerController {
      * @param operateType 操作类型  add update delete
      * @return
      */
-    @RequestMapping("/addCustomer")
-    public Map<String, Object> addCustomer(String id, String name, String sex, String phone, String company, String remarks,String operateType) {
+    @RequestMapping("/operateCustomer")
+    public Map<String, Object> operateCustomer(String id, String name, String sex, String phone, String company, String remarks,String operateType) {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> paras = new HashMap<>();
         paras.put("id", id);
@@ -114,4 +114,56 @@ public class CustomerController {
         }
         return result;
     }
+
+    ////////////////////////////////////////////客户消费信息//////////////////////////////////////////
+    /**
+     * 根据id查询客户信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/getConsumeById")
+    public Map<String, Object> getConsumeById(String id,String pageSize, String nowPage) {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> paras = new HashMap<>();
+        paras.put("id", id);
+        Page page =new Page(nowPage,pageSize);
+        List<Map<String,Object>> reTotal = customerService.getConsumeById(paras,page);
+        if (reTotal == null || reTotal.size() == 0) {
+            result.put("state", ResultState.QUERYFAIL.toString());
+        } else {
+            page.setCount(false);
+            List reList = customerService.getConsumeById(paras,page);
+            result.put("state", ResultState.QUERYSUCCESS.toString());
+            result.put("list", reList);
+            result.put("total", reTotal.get(0).get("total"));
+        }
+        return result;
+    }
+
+    /**
+     * 编辑客户消费信息
+     * @param customerId
+     * @param money
+     * @param createperple
+     * @param remarks
+     * @param operateType 操作类型  add update delete
+     * @return
+     */
+    @RequestMapping("/operateConsume")
+    public Map<String, Object> operateConsume(String customerId, String money, String createperple, String remarks,String operateType) {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> paras = new HashMap<>();
+        paras.put("customer_id", customerId);
+        paras.put("createperple", createperple);
+        paras.put("money", money);
+        paras.put("remarks", remarks);
+        int state=customerService.operateConsume(paras,operateType);
+
+        if(state<1)
+            result.put("state", ResultState.ADDFAIL.toString());
+        else
+            result.put("state", ResultState.ADDSUCCESS.toString());
+        return result;
+    }
+
 }

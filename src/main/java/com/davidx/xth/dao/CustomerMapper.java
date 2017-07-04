@@ -39,4 +39,33 @@ public interface CustomerMapper {
      * @return
      */
     int deleteCustomer(Map<String, Object> paras);
+
+    /**
+     * 查询客户消费信息
+     * @param paras
+     * @param page
+     * @return
+     */
+    List<Map<String, Object>> getConsumeById(@Param(value = "c")Map<String, Object> paras, @Param(value = "p")Page page);
+
+    /**
+     * 添加客户消费信息
+     * @param paras
+     * @return
+     */
+    int addConsume(Map<String, Object> paras);
+
+    /**
+     * 修改客户消费信息
+     * @param paras
+     * @return
+     */
+    int updateConsume(Map<String, Object> paras);
+
+    /**
+     * 删除客户消费信息
+     * @param paras
+     * @return
+     */
+    int deleteConsume(Map<String, Object> paras);
 }

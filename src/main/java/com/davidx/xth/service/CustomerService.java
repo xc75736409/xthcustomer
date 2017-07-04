@@ -37,4 +37,21 @@ public interface CustomerService {
      * @return
      */
     int deleteCustomer(Map<String, Object> paras);
+
+    /**
+     * 查询客户消费信息
+     * @param paras
+     * @param page
+     * @return
+     */
+    List<Map<String, Object>> getConsumeById(Map<String, Object> paras, Page page);
+
+
+    /**
+     * 操作客户消费信息
+     * @param paras
+     * @param operateType
+     * @return
+     */
+    int operateConsume(Map<String, Object> paras,String operateType);
 }

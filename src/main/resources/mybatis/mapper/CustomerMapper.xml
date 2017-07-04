@@ -55,4 +55,38 @@
         DELETE from customer WHERE id=#{id}
     </delete>
 
+
+    <select id="getConsumeById"   resultType="Map">
+        SELECT
+        <if test="!p.isCount">
+            co.*,cu.`name`,cu.sex,cu.phone
+        </if>
+        <if test="p.isCount">
+            count(*) as total
+        </if>
+        from
+        consume co
+        LEFT JOIN customer cu on cu.id=co.customer_id
+        where 1=1
+        <if test="c.id!=null and c.id!=''">
+            and cu.id=#{c.id}
+        </if>
+        ORDER by co.createtime DESC
+        <if test="!p.isCount">
+            LIMIT #{p.indexPage},#{p.pageSize}
+        </if>
+    </select>
+
+    <insert id="addConsume">
+        INSERT INTO consume(id,customer_id,money,createperple,createtime,remarks)
+        VALUES( UUID_SHORT() ,#{customer_id},#{money},#{createperple},NOW(),#{remarks} )
+    </insert>
+
+    <update id="updateConsume">
+        UPDATE consume SET money=#{money},remarks=#{remarks} where id=#{id}
+    </update>
+
+    <delete id="deleteConsume">
+        DELETE from consume WHERE id=#{id}
+    </delete>
 </mapper>
