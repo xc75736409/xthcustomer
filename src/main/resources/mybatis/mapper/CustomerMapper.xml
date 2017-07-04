@@ -32,7 +32,7 @@
         <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
             and createtime BEGIN #{c.bcreatetime} and #{c.ecreatetime}
         </if>
-        ORDER by createtime
+        ORDER by createtime DESC
         <if test="!p.isCount">
             LIMIT #{p.indexPage},#{p.pageSize}
         </if>
