@@ -117,22 +117,34 @@ public class CustomerController {
 
     ////////////////////////////////////////////客户消费信息//////////////////////////////////////////
     /**
-     * 根据id查询客户信息
-     * @param id
+     * 根据条件查询客户信息
+     * @param customerId
+     * @param money
+     * @param createperple
+     * @param bcreatetime
+     * @param ecreatetime
+     * @param pageSize
+     * @param nowPage
      * @return
      */
-    @RequestMapping("/getConsumeById")
-    public Map<String, Object> getConsumeById(String id,String pageSize, String nowPage) {
+    @RequestMapping("/getConsume")
+    public Map<String, Object> getConsume(String id,String customerId, String money, String createperple,String bcreatetime,String ecreatetime,
+                                                String pageSize, String nowPage) {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> paras = new HashMap<>();
         paras.put("id", id);
+        paras.put("customer_id", customerId);
+        paras.put("money", money);
+        paras.put("createperple", createperple);
+        paras.put("bcreatetime", bcreatetime);
+        paras.put("ecreatetime", ecreatetime);
         Page page =new Page(nowPage,pageSize);
-        List<Map<String,Object>> reTotal = customerService.getConsumeById(paras,page);
+        List<Map<String,Object>> reTotal = customerService.getConsume(paras,page);
         if (reTotal == null || reTotal.size() == 0) {
             result.put("state", ResultState.QUERYFAIL.toString());
         } else {
             page.setCount(false);
-            List reList = customerService.getConsumeById(paras,page);
+            List reList = customerService.getConsume(paras,page);
             result.put("state", ResultState.QUERYSUCCESS.toString());
             result.put("list", reList);
             result.put("total", reTotal.get(0).get("total"));

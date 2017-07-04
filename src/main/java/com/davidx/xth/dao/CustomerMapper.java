@@ -46,7 +46,7 @@ public interface CustomerMapper {
      * @param page
      * @return
      */
-    List<Map<String, Object>> getConsumeById(@Param(value = "c")Map<String, Object> paras, @Param(value = "p")Page page);
+    List<Map<String, Object>> getConsume(@Param(value = "c")Map<String, Object> paras, @Param(value = "p")Page page);
 
     /**
      * 添加客户消费信息

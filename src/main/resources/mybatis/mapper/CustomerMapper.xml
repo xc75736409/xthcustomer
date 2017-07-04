@@ -57,7 +57,7 @@
     </delete>
 
 
-    <select id="getConsumeById"   resultType="Map">
+    <select id="getConsume"   resultType="Map">
         SELECT
         <if test="!p.isCount">
             co.*,cu.`name`,cu.sex,cu.phone
@@ -71,6 +71,18 @@
         where 1=1
         <if test="c.id!=null and c.id!=''">
             and cu.id=#{c.id}
+        </if>
+        <if test="c.money!=null and c.money!=''">
+            and co.money=#{c.money}
+        </if>
+        <if test="c.customer_id!=null and c.customer_id!=''">
+            and co.customer_id LIKE CONCAT('%',#{c.customer_id},'%')
+        </if>
+        <if test="c.createperple!=null and c.createperple!=''">
+            and co.createperple LIKE CONCAT('%',#{c.createperple},'%')
+        </if>
+        <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
+            and co.createtime BEGIN #{c.bcreatetime} and #{c.ecreatetime}
         </if>
         ORDER by co.createtime DESC
         <if test="!p.isCount">

@@ -39,8 +39,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public List<Map<String, Object>> getConsumeById(Map<String, Object> paras, Page page) {
-        return dao.getConsumeById(paras, page);
+    public List<Map<String, Object>> getConsume(Map<String, Object> paras, Page page) {
+        return dao.getConsume(paras, page);
     }
 
     @Override

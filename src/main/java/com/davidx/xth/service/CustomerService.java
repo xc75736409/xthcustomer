@@ -44,7 +44,7 @@ public interface CustomerService {
      * @param page
      * @return
      */
-    List<Map<String, Object>> getConsumeById(Map<String, Object> paras, Page page);
+    List<Map<String, Object>> getConsume(Map<String, Object> paras, Page page);
 
 
     /**
