@@ -3,6 +3,7 @@ package com.davidx.xth.controller;
 import com.davidx.xth.ResultState;
 import com.davidx.xth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +15,8 @@ import java.util.Map;
  * Created by xc on 17-6-30.
  */
 @RestController
+@CrossOrigin
+@RequestMapping("/app")
 public class UserController {
 
     @Autowired

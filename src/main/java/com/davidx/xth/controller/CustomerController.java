@@ -4,6 +4,7 @@ import com.davidx.xth.Page;
 import com.davidx.xth.ResultState;
 import com.davidx.xth.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,8 @@ import java.util.Map;
  * Created by xc on 17-7-4.
  */
 @RestController
+@CrossOrigin
+@RequestMapping("/app/customer")
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
