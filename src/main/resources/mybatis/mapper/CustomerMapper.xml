@@ -30,7 +30,7 @@
             and company LIKE CONCAT('%',#{c.company},'%')
         </if>
         <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
-            and createtime BEGIN #{c.bcreatetime} and #{c.ecreatetime}
+            and createtime BETWEEN #{c.bcreatetime} and #{c.ecreatetime}
         </if>
         ORDER by createtime DESC
         <if test="!p.isCount">
@@ -52,8 +52,7 @@
     </update>
 
     <delete id="deleteCustomer">
-        DELETE from consume WHERE customer_id=#{id};
-        DELETE from customer WHERE id=#{id};
+        DELETE from customer WHERE id=#{id}
     </delete>
 
 
@@ -82,7 +81,7 @@
             and co.createperple LIKE CONCAT('%',#{c.createperple},'%')
         </if>
         <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
-            and co.createtime BEGIN #{c.bcreatetime} and #{c.ecreatetime}
+            and co.createtime BETWEEN #{c.bcreatetime} and #{c.ecreatetime}
         </if>
         ORDER by co.createtime DESC
         <if test="!p.isCount">

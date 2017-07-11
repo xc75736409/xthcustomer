@@ -35,7 +35,9 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public int deleteCustomer(Map<String, Object> paras) {
-        return dao.deleteCustomer(paras);
+        dao.deleteCustomer(paras);
+        dao.deleteConsume(paras);
+        return 2;
     }
 
     @Override

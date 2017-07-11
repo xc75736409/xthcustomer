@@ -14,7 +14,7 @@ public enum ResultState {
     FAIL(500), //请求失败
     LOGINFAIL(501),  //登录失败
     QUERYFAIL(502),//查询失败
-    ADDFAIL(503);//添加失败
+    ADDFAIL(503);//操作成功
 
     // 定义私有变量
     private int nCode;

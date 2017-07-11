@@ -38,7 +38,7 @@ public interface CustomerMapper {
      * @param paras
      * @return
      */
-    int deleteCustomer(Map<String, Object> paras);
+    void deleteCustomer(Map<String, Object> paras);
 
     /**
      * 查询客户消费信息
