@@ -38,6 +38,7 @@ public class CustomerController {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> paras = new HashMap<>();
         paras.put("id", id);
+        paras.put("customer_id", id);
         paras.put("name", name);
         paras.put("sex", sex);
         paras.put("phone", phone);
@@ -165,9 +166,10 @@ public class CustomerController {
      * @return
      */
     @RequestMapping("/operateConsume")
-    public Map<String, Object> operateConsume(String customerId, String money, String createperple, String remarks,String operateType) {
+    public Map<String, Object> operateConsume(String id,String customerId, String money, String createperple, String remarks,String operateType) {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> paras = new HashMap<>();
+        paras.put("id", id);
         paras.put("customer_id", customerId);
         paras.put("createperple", createperple);
         paras.put("money", money);

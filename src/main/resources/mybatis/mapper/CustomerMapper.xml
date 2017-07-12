@@ -99,6 +99,11 @@
     </update>
 
     <delete id="deleteConsume">
-        DELETE from consume WHERE id=#{id}
+        <if test="customer_id!=null and customer_id!=''">
+            DELETE from consume WHERE customer_id=#{customer_id}
+        </if>
+        <if test="id!=null and id!=''">
+            DELETE from consume WHERE id=#{id}
+        </if>
     </delete>
 </mapper>
