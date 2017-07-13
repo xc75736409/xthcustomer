@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.davidx.xth.dao.StatisticsDao" >
+
+    <select id="StatisticsGroupByCount"  parameterType="Map" resultType="Map">
+       SELECT cu.*,COUNT(co.customer_id)as total
+        FROM consume co
+        LEFT JOIN customer cu on cu.id=co.customer_id
+        where 1=1
+        <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
+            and co.createtime BETWEEN #{c.bcreatetime} and #{c.ecreatetime}
+        </if>
+        GROUP  BY co.customer_id
+        ORDER BY COUNT(co.customer_id) desc
+        <if test="!p.isCount">
+            LIMIT #{p.indexPage},#{p.pageSize}
+        </if>
+    </select>
+
+    <select id="StatisticsGroupBySum"  parameterType="Map" resultType="Map">
+        SELECT cu.*,sum(co.money) as total
+        FROM consume co
+        LEFT JOIN customer cu on cu.id=co.customer_id
+        where 1=1
+        <if test="c.bcreatetime!=null and c.bcreatetime!='' and c.ecreatetime!=null and c.ecreatetime!=''">
+            and co.createtime BETWEEN #{c.bcreatetime} and #{c.ecreatetime}
+        </if>
+        GROUP  BY co.customer_id
+        ORDER BY sum(co.money) desc
+        <if test="!p.isCount">
+            LIMIT #{p.indexPage},#{p.pageSize}
+        </if>
+    </select>
+</mapper>
