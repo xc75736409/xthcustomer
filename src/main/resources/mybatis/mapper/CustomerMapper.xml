@@ -3,6 +3,9 @@
 
 <mapper namespace="com.davidx.xth.dao.CustomerMapper" >
 
+    <select id="ExistsPhone" resultType="Map">
+        SELECT * FROM customer WHERE  phone=#{phone}
+    </select>
 
     <select id="getCustomer"   resultType="Map">
         SELECT

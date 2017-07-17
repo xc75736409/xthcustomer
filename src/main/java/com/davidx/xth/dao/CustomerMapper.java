@@ -12,6 +12,13 @@ import java.util.Map;
  */
 @Mapper
 public interface CustomerMapper {
+
+    /**
+     * 检查电话是否存在
+     * @param paras
+     * @return
+     */
+    List<Map<String, Object>> ExistsPhone(Map<String, Object> paras);
     /**
      * 查询客户信息
      * @param paras

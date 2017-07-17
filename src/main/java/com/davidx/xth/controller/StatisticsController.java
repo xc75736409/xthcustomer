@@ -46,7 +46,7 @@ public class StatisticsController {
         }else if("2".equals(groupType)){
             reList = statisticsDao.StatisticsGroupByCount(paras,page);
         }
-        if (reList == null || reList.size() == 0) {
+        if (reList == null) {
             result.put("state", ResultState.QUERYFAIL.toString());
         } else {
             result.put("state", ResultState.QUERYSUCCESS.toString());

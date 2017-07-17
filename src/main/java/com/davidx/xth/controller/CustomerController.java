@@ -3,6 +3,7 @@ package com.davidx.xth.controller;
 import com.davidx.xth.Page;
 import com.davidx.xth.ResultState;
 import com.davidx.xth.service.CustomerService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,15 +46,25 @@ public class CustomerController {
         paras.put("company", company);
         paras.put("remarks", remarks);
         int state=0;
-        if("add".equals(operateType))
+        if("add".equals(operateType)){
+            int Exists= customerService.ExistsPhone(paras);
+            if(Exists>0)
+                state=9999;
+            else
             state=customerService.addCustomer(paras);
+        }
+
         else if("update".equals(operateType))
             state=customerService.updateCustomer(paras);
-        else if("delete".equals(operateType))
+        else if("delete".equals(operateType)){
             state=customerService.deleteCustomer(paras);
+        }
+
         if(state<1)
             result.put("state", ResultState.ADDFAIL.toString());
-        else
+        else if(state==9999){
+            result.put("state", ResultState.ExistsPhone.toString());
+        }else
             result.put("state", ResultState.ADDSUCCESS.toString());
         return result;
     }
@@ -71,7 +82,7 @@ public class CustomerController {
         Map<String, Object> paras = new HashMap<>();
         paras.put("id", customerId);
         List reList = customerService.getCustomer(paras, new Page());
-        if (reList == null || reList.size() == 0) {
+        if (reList == null) {
             result.put("state", ResultState.QUERYFAIL.toString());
         } else {
             result.put("state", ResultState.QUERYSUCCESS.toString());

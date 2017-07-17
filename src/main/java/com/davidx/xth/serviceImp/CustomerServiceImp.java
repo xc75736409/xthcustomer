@@ -19,6 +19,12 @@ public class CustomerServiceImp implements CustomerService {
     CustomerMapper dao;
 
     @Override
+    public int ExistsPhone(Map<String, Object> paras) {
+        List<Map<String, Object>> reList=dao.ExistsPhone(paras);
+        return reList==null?0:reList.size();
+    }
+
+    @Override
     public List<Map<String, Object>> getCustomer(Map<String, Object> paras, Page page) {
         return dao.getCustomer(paras, page);
     }
@@ -36,6 +42,7 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public int deleteCustomer(Map<String, Object> paras) {
         dao.deleteCustomer(paras);
+        paras.put("id", null);
         dao.deleteConsume(paras);
         return 2;
     }
