@@ -39,11 +39,15 @@ public class StatisticsController {
         paras.put("bcreatetime", bcreatetime);
         paras.put("ecreatetime", ecreatetime);
         Page page =new Page(nowPage,pageSize);
-        page.setCount(false);
-        List reList=null;
+        List<Map<String,Object>> reList=null;
+        List<Map<String,Object>> reTotal=null;
         if("1".equals(groupType)){
+            reTotal = statisticsDao.StatisticsGroupBySum(paras,page);
+            page.setCount(false);
             reList = statisticsDao.StatisticsGroupBySum(paras,page);
         }else if("2".equals(groupType)){
+            reTotal = statisticsDao.StatisticsGroupByCount(paras,page);
+            page.setCount(false);
             reList = statisticsDao.StatisticsGroupByCount(paras,page);
         }
         if (reList == null) {
@@ -51,6 +55,7 @@ public class StatisticsController {
         } else {
             result.put("state", ResultState.QUERYSUCCESS.toString());
             result.put("list", reList);
+            result.put("total", reTotal.get(0).get("total"));
         }
         return result;
     }
