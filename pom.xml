@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.davidx.xth</groupId>
-  <artifactId>customer</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>xthCustomer</artifactId>
+  <version>1.0</version>
   <packaging>jar</packaging>
   <name>xthCustomer</name>
   <description>Demo project for Spring Boot</description>
@@ -55,11 +55,6 @@
       <artifactId>druid-spring-boot-starter</artifactId>
       <version>1.1.1</version>
     </dependency>
-    <!--<dependency>-->
-      <!--<groupId>com.alibaba</groupId>-->
-      <!--<artifactId>druid</artifactId>-->
-      <!--<version>1.0.20</version>-->
-    <!--</dependency>-->
   </dependencies>
   <build>
     <plugins>
